@@ -1,8 +1,13 @@
-const dataNascimento = document.querySelector('#nascimento');
-// adiciona um ouvinte para quando o campo perder o foco chamar a função de validação
-dataNascimento.addEventListener('blur', (evento) => {
-    validaDataNascimento(evento.target)
-})
+export function valida(input){
+    const tipoDeInput = input.dataset.tipo
+    if(validadores[tipoDeInput]){
+        validadores[tipoDeInput](input);
+    }
+}
+
+const validadores = {
+    dataNascimento:input => validaDataNascimento(input)
+}
 
 function validaDataNascimento(input){
     const dataRecebida = new Date(input.value)
